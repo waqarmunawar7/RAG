@@ -12,7 +12,6 @@ def chunk_documents_from_txt(file_path: str) -> List[Document]:
         raw = f.read()
 
     docs_raw = raw.split("--- Document")
-    print(len(docs_raw))
     cleaned_docs = [data_cleaning.preprocessing(doc) for doc in docs_raw if doc.strip()]
     documents = [Document(page_content=doc) for doc in cleaned_docs]
 
