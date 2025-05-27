@@ -32,7 +32,13 @@ async def create_vector_store(index_name: str):
             for i, doc in enumerate(docs, 1):
                 f.write(f"--- Document {i} ---\n")
                 f.write(doc.page_content + "\n\n")
-
+        # if(setting.topic_classification):
+        #     chunks = chunk_multiple_documents_from_txt(output_file)
+        #     # embeddings = embed_chunks()
+        #     # for index_name  in setting.topic_handling: 
+        #     #     print(index_name)
+        #     #     store_chunks_to_faiss(chunks[index_name], embeddings, index_name)
+        # else: 
         chunks = chunk_documents_from_txt(output_file)
         embeddings = embed_chunks()
         store_chunks_to_faiss(chunks, embeddings, index_name)

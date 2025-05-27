@@ -50,15 +50,15 @@ async def handle_post(request: Request):
     session_filename = get_session_filename(session_id, date_str)
     user_sessions.setdefault(session_id, [])
 
-    retriever_instance = Retriever(classify_message(query))
+    retriever_instance = Retriever()
     context = retriever_instance.vector_store_retriever(query)
     history = user_sessions[session_id]
 
     answer = await generate_answer(query, context, session_id, history)
 
     history.append({"role": "user", "content": query})
-    history.append({"role": "assistant", "content": answer , "context": combine_context(context)})
+    history.append({"role": "assistant", "content": answer['response'] , "context": combine_context(context)})
     with open(session_filename, "w") as f:
         json.dump(history, f, indent=2)
 
-    return JSONResponse(content={"message": answer})
+    return JSONResponse(content={"message": answer['response'] , 'is_contact': answer['is_contact'] })

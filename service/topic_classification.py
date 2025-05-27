@@ -10,9 +10,8 @@ classifier = load_classifier()
 def classify_message(msg: str,) -> str:
     if not msg.strip():
         return ([], [])
-
     try:
-        result = classifier(msg, setting.topic_handling )
+        result = classifier(msg, setting.intents)
         return result['labels'][0]
     except Exception as e:
         print(f"Error during classification: {e}")

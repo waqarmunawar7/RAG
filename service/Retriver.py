@@ -3,7 +3,7 @@ from langchain_huggingface import HuggingFaceEmbeddings
 
 from config import setting
 class Retriever:
-    def __init__(self,topic):
+    def __init__(self):
         embeddings_model = HuggingFaceEmbeddings(model_name=setting.llm_embeedings_model)
         self.vectorstore = FAISS.load_local('knowledge_bases/' + setting.org_name , embeddings=embeddings_model, index_name="index", allow_dangerous_deserialization=True)
         

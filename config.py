@@ -1,12 +1,15 @@
 import os 
 from pydantic_settings import BaseSettings
-from typing import List , Dict
+from typing import List , Tuple
+from pydantic import Field
+
 
 class Settings(BaseSettings):
+    
     allowed_host: List[str] = []
     app_name: str
-    auth_key: str
-    algorithm: str
+    auth_key: str 
+    algorithm: str 
     port:int
     env: str
     ollama_host: str
@@ -17,30 +20,21 @@ class Settings(BaseSettings):
     vectorstore_path: str
     user_agent:  str
     org_name: str
-    topic_handling:List[str] = []
-    intents: Dict[str, List[str]] = {
-        'services': [
-            "cloud",
-            "devops",
-            "infrastructure_management",
-            "custom_software",
-            "mobile_development",
-            "staff_augmentation",
-            "others"
-        ],
-        'company': [
-            "about_us",
-            "careers",
-            "partners",
-            "contact_us"
-        ],
-        'others': [
-            "testimonials",
-            "blog",
-            "privacy_policy",
-            "terms_conditions"
-        ]
-    }
+    # topic_handling : List[str] = ["about_company", "services", "contact", "careers"]  
+    topic_classification : bool
+    intents: List[str] = ['contact_person' , 'others']
+    
+    mail_username : str
+    mail_from : str
+    mail_password : str
+    mail_port : int 
+    mail_server : str
+    mail_starttls : bool
+    mail_ssl_tls : bool
+    
+    inquiry_email : List[str]
+    
+    
 
     class Config():
         env_file = '.env'

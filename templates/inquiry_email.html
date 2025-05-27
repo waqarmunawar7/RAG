@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    body { font-family: Arial, sans-serif; background-color: #f8f9fa; padding: 20px; color: #333; }
+    .container { max-width: 600px; margin: auto; background: white; border-radius: 8px; padding: 20px; border: 1px solid #ddd; }
+    .section { margin-bottom: 20px; }
+    .label { font-weight: bold; }
+    .transcript { background: #f1f1f1; padding: 10px; font-family: monospace; border-radius: 4px; white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>📩 New User Inquiry from {{ name }} ({{ email }})</h2>
+
+    <div class="section">
+      <p>Hi Inquiry Team,</p>
+      <p>A new inquiry has been submitted via our chat application. Please find the details below:</p>
+    </div>
+
+    <div class="section">
+      <h3>👤 User Information</h3>
+      <p><span class="label">Name:</span> {{ name }}</p>
+      <p><span class="label">Email:</span> {{ email }}</p>
+    </div>
+
+    <div class="section">
+      <h3>✉️ User Message for Email Follow-up:</h3>
+      <p>{{ user_message }}</p> 
+    </div>
+
+
+    <div class="section">
+        <h3>💬 Chat Transcript:</h3>
+        {{ chat_transcript | safe }}
+    </div>
+      
+
+    <p>— End of Inquiry —</p>
+  </div>
+</body>
+</html>
